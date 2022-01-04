@@ -36,7 +36,7 @@ print("Lapjaid értéke összesen:", sajat_kartyak)
 print(" ")
 
 oszto_kartyak = oszto_kartyak + b1
-print("Osztó első lap értéke", b1)
+print("Osztó első lap értéke:", b1)
 print("Osztó lapjainak összege:", oszto_kartyak)
 
 print(" ")
@@ -67,29 +67,33 @@ while kerdes == 'Igen' or kerdes == "igen":
     kerdes = input("Szeretnél lapot húzni ? Igen vagy Nem ?")
 
 oszto_kartyak = oszto_kartyak + b2
-print("Az osztó második lapja", b2)
+print("Az osztó második lapja:", b2)
 print("Osztó lapjainak összege:", oszto_kartyak)
 
-while kerdes == 'Nem' or kerdes == "nem":
+if kerdes == 'Nem' or kerdes == "nem":
     uj_lap_oszto = random.choice(lap_ertekek)
     if oszto_kartyak == 21:
         print("Vesztettél! Az osztónak Blackjackje van!")
         exit()
-    if oszto_kartyak <= 16:
-        if uj_lap_oszto == 11 and oszto_kartyak > 10:
-            oszto_kartyak += 2
-        else:
-            oszto_kartyak = oszto_kartyak + uj_lap_oszto
-        print(" ")
-        print("Osztó következő lapjának értéke:", uj_lap_oszto)
-        print("Osztó lapjainak összege: ", oszto_kartyak)
-        print(" ")
-        if oszto_kartyak > 21:
-            print("Nyertél! Az osztó meghaladta a 21-et!")
-            exit()
-        if oszto_kartyak < 21 and oszto_kartyak > sajat_kartyak:
-            print("Vesztettél! Az osztónak nagyobb lapjai vannak!")
-            exit()
-        elif sajat_kartyak < 21 and sajat_kartyak > oszto_kartyak:
-            print("Nyertél! A Lapjaid értéke nagyobb mint az osztóé!")
-            exit()
+while oszto_kartyak <= 16:
+    if uj_lap_oszto == 11 and oszto_kartyak > 10:
+        oszto_kartyak += 2
+    else:
+        oszto_kartyak = oszto_kartyak + uj_lap_oszto
+    if oszto_kartyak == 21:
+        print("Vesztettél! Az osztónak Blackjackje van!")
+        exit()
+    print(" ")
+    print("Osztó következő lapjának értéke:", uj_lap_oszto)
+    print("Osztó lapjainak összege: ", oszto_kartyak)
+    print(" ")
+
+if oszto_kartyak > 21:
+    print("Nyertél! Az osztó meghaladta a 21-et!")
+    exit()
+if oszto_kartyak < 21 and oszto_kartyak > sajat_kartyak:
+    print("Vesztettél! Az osztónak nagyobb lapjai vannak!")
+    exit()
+elif sajat_kartyak < 21 and sajat_kartyak > oszto_kartyak:
+    print("Nyertél! A Lapjaid értéke nagyobb mint az osztóé!")
+    exit()
