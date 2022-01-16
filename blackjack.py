@@ -11,17 +11,47 @@ A játék szabályai:
 - Az nyer aki közelebb van a 21-hez, vagy 21-e van, vagy peddig ha valaki túl haladta a 21-et.
 '''
 
-lap_ertekek = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
-lap_ertekek_asz = [2, 3, 4, 5, 6, 7, 8, 9, 10]
+def laphuz1():
+    lap_ertekek = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+
+    a1 = random.choice(lap_ertekek)
+    return a1
+
+def laphuz2():
+    lap_ertekek_asz = [2, 3, 4, 5, 6, 7, 8, 9, 10] 
+
+    a2 = random.choice(lap_ertekek_asz)
+    return a2
+
+def laphuzoszto1():
+    lap_ertekek = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+
+    b1 = random.choice(lap_ertekek)
+    return b1
+
+def laphuzoszto2():
+    lap_ertekek_asz = [2, 3, 4, 5, 6, 7, 8, 9, 10] 
+
+    b2 = random.choice(lap_ertekek_asz)
+    return b2
+
+#lap_ertekek = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+#lap_ertekek_asz = [2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 sajat_kartyak = 0
 oszto_kartyak = 0
 
-a1 = random.choice(lap_ertekek)
-a2 = random.choice(lap_ertekek_asz)
+#a1 = random.choice(lap_ertekek)
+#a2 = random.choice(lap_ertekek_asz)
 
-b1 = random.choice(lap_ertekek)
-b2 = random.choice(lap_ertekek_asz)
+#b1 = random.choice(lap_ertekek)
+#b2 = random.choice(lap_ertekek_asz)
+
+a1 = laphuz1()
+a2 = laphuz2()
+
+b1 = laphuzoszto1()
+b2 = laphuzoszto2()
 
 sajat_kartyak = sajat_kartyak + a1
 print("Kaptál egy", a1, "értékű lapot.")
@@ -49,9 +79,10 @@ kerdes = input("Szeretnél lapot húzni ? Igen vagy Nem ?")
 kerdes = str(kerdes)
 
 while kerdes == 'Igen' or kerdes == "igen":
-    uj_lap = random.choice(lap_ertekek)
+    uj_lap = laphuz1()
     if uj_lap == 11 and sajat_kartyak > 10:
         sajat_kartyak += 2
+        uj_lap = 2
     else:
         sajat_kartyak = sajat_kartyak + uj_lap
     print(" ")
@@ -70,17 +101,27 @@ oszto_kartyak = oszto_kartyak + b2
 print("Az osztó második lapja:", b2)
 print("Osztó lapjainak összege:", oszto_kartyak)
 
-if kerdes == 'Nem' or kerdes == "nem":
-    uj_lap_oszto = random.choice(lap_ertekek)
-    if oszto_kartyak == 21:
-        print("Vesztettél! Az osztónak Blackjackje van!")
-        exit()
+
+uj_lap_oszto = laphuz1()
+if oszto_kartyak == 21:
+    print(" ")
+    print("Osztó következő lapjának értéke:", uj_lap_oszto)
+    print("Osztó lapjainak összege: ", oszto_kartyak)
+    print(" ")
+    print("Vesztettél! Az osztónak Blackjackje van!")
+    exit()
 while oszto_kartyak <= 16:
+    uj_lap_oszto = laphuz1()
     if uj_lap_oszto == 11 and oszto_kartyak > 10:
         oszto_kartyak += 2
+        uj_lap_oszto = 2
     else:
         oszto_kartyak = oszto_kartyak + uj_lap_oszto
     if oszto_kartyak == 21:
+        print(" ")
+        print("Osztó következő lapjának értéke:", uj_lap_oszto)
+        print("Osztó lapjainak összege: ", oszto_kartyak)
+        print(" ")
         print("Vesztettél! Az osztónak Blackjackje van!")
         exit()
     print(" ")
